@@ -1,0 +1,14 @@
+N-Layers 
+
+api -> node api source code
+  
+  src -> all source code 
+    - entities - object mappings
+    - factories - instance generators
+    - repositories - data acess 
+    - routes - endpoint mappings 
+    - services - commmunication between the routes and repositories layer (business logic)
+    - util - shared code
+    - handler - commmunication between routes and server
+    - index - server instance 
+    
