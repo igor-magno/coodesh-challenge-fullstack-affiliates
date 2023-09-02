@@ -12,3 +12,9 @@ api -> node api source code
     - handler - commmunication between routes and server
     - index - server instance 
     
+web -> react web app source code
+
+  src -> all source code
+    - transactions
+      - import - page for import transactions per file
+      - index - transactions main page (lists transactions)
