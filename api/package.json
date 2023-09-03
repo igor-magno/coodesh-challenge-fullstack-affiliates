@@ -5,6 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "prod": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test src/",
+    "test:dev": "node --watch --test src/"
   },
   "keywords": [],
   "author": "",
