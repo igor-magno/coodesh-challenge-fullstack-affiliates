@@ -8,7 +8,9 @@
     "prod": "node src/index.js",
     "dev": "node --watch src/index.js",
     "test": "node --test src/",
-    "test:dev": "node --watch --test src/"
+    "test:dev": "node --watch --test src/",
+    "test:e2e": "node --test test/e2e/",
+    "test:e2e:dev": "node --watch --test test/e2e/"
   },
   "keywords": [],
   "author": "",
