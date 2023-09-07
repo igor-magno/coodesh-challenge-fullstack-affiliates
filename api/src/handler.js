@@ -1,6 +1,8 @@
 import { parse } from 'node:url'
+import routes from './routes/Route.js'
 
 const allRoutes = {
+    ...routes,
     '/status:get': (request, response) => {
         response.end('Api is runing.')
     },
@@ -29,11 +31,8 @@ const handler = (request, response) => {
 
 const handlerError = (response) => {
     return error => {
-        console.log('Something bad has  happened**', error.stack)
-        response.writeHead(500)
-        response.write('Internal server error!. Try again later. If the error persists, contact support.')
-
-        return response.end()
+        response.writeHead(error.getCode())
+        return response.end(error.getMessage())
     }
 }
 
