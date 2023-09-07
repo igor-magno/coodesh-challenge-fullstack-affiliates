@@ -5,15 +5,20 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "prod": "node src/index.js",
-    "dev": "node --watch src/index.js",
-    "test": "node --test src/",
-    "test:dev": "node --watch --test src/",
-    "test:e2e": "node --test test/e2e/",
-    "test:e2e:dev": "node --watch --test test/e2e/"
+    "prod": "NODE_ENV=production node src/index.js",
+    "dev": "NODE_ENV=development node --watch src/index.js",
+    "test": "NODE_ENV=test node --test src/",
+    "test:dev": "NODE_ENV=test node --watch --test src/",
+    "test:e2e": "NODE_ENV=test node --test test/e2e/",
+    "test:e2e:dev": "NODE_ENV=test node --watch --test test/e2e/",
+    "prod:db:migrate": "NODE_ENV=production npx sequelize-cli db:migrate",
+    "prod:db:seeder": "NODE_ENV=production npx sequelize-cli db:seed:all",
+    "dev:db:migrate": "NODE_ENV=development npx sequelize-cli db:migrate",
+    "dev:db:seeder": "NODE_ENV=development npx sequelize-cli db:seed:all",
+    "test:db:migrate": "NODE_ENV=test npx sequelize-cli db:migrate"
   },
   "keywords": [],
-  "author": "",
+  "author": "igor magno",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
