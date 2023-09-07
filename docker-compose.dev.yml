@@ -11,6 +11,8 @@ services:
       - "3001:3000"
     volumes:
       - ./api/src:/usr/src/app/src
+    env_file:
+      - ./api/.env
 
   web:
     container_name: web
@@ -21,3 +23,37 @@ services:
       - "3000:3000"
     volumes:
       - ./web/src:/usr/src/app/src
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: affiliates_api_password
+      MYSQL_DATABASE: affiliates
+    ports:
+      - 3306:3306
+    volumes:
+      - ./Docker/volumes/MySql:/var/lib/mysql
+        
+  mysql_dev:
+    container_name: mysql_dev
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: affiliates_api_password
+      MYSQL_DATABASE: affiliates
+    ports:
+      - 3316:3306
+    volumes:
+      - ./Docker/volumes/MySqlDev:/var/lib/mysql
+
+  mysql_test:
+    container_name: mysql_test
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: affiliates_api_password
+      MYSQL_DATABASE: affiliates
+    ports:
+      - 3326:3306
+    volumes:
+      - ./Docker/volumes/MySqlTest:/var/lib/mysql
+
