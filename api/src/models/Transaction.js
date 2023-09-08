@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize'
 import connection from '../db/connection.js'
+import Type from './Type.js'
 
 const Transaction = connection.define('Transaction', {
   id: {
@@ -35,7 +36,9 @@ const Transaction = connection.define('Transaction', {
   updatedAt: {
     type: DataTypes.DATE
   }
-}, {});
+}, {})
+
+Transaction.belongsTo(Type)
 
 export default Transaction
 

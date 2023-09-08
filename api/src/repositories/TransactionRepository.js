@@ -1,4 +1,4 @@
-import connection from "../db/connection.js"
+import Type from "../models/Type.js"
 
 class TransactionRepository {
     constructor({ transactionModel }) {
@@ -6,7 +6,7 @@ class TransactionRepository {
     }
 
     async all() {
-        const transactions = await this.transactionModel.findAll()
+        const transactions = await this.transactionModel.findAll({ include: Type })
         return transactions
     }
 
