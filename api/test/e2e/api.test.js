@@ -14,6 +14,7 @@ import ValueIsInvalidError from '../../src/errors/ValueIsInvalidError.js'
 import 'dotenv/config'
 import Transaction from '../../src/models/Transaction.js'
 import Type from '../../src/models/Type.js'
+import { File } from 'node:buffer'
 
 process.env.APP_URL = process.env.TEST_APP_URL
 process.env.APP_PORT = process.env.TEST_APP_PORT
@@ -79,11 +80,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         deepStrictEqual(response.status, 200)
         const message = await response.text()
@@ -97,11 +101,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-type.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-type.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new TypeIsEmptyError
         deepStrictEqual(response.status, error.getCode())
@@ -117,11 +124,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-date.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-date.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new DateIsEmptyError
         deepStrictEqual(response.status, error.getCode())
@@ -137,11 +147,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-product.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-product.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new ProductIsEmptyError
         deepStrictEqual(response.status, error.getCode())
@@ -157,11 +170,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-value.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-value.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new ValueIsEmptyError
         deepStrictEqual(response.status, error.getCode())
@@ -177,11 +193,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-seller.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-empty-seller.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new SellerIsEmptyError
         deepStrictEqual(response.status, error.getCode())
@@ -197,11 +216,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-type.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-type.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new TypeIsInvalidError()
         deepStrictEqual(response.status, error.getCode())
@@ -217,11 +239,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-type-v1.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-type-v1.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new TypeIsInvalidError()
         deepStrictEqual(response.status, error.getCode())
@@ -237,11 +262,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-date.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-date.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new DateIsInvalidError()
         deepStrictEqual(response.status, error.getCode())
@@ -257,11 +285,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-date-v1.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-date-v1.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new DateIsInvalidError()
         deepStrictEqual(response.status, error.getCode())
@@ -277,11 +308,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-date-v2.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-date-v2.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new DateIsInvalidError()
         deepStrictEqual(response.status, error.getCode())
@@ -297,11 +331,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-date-v3.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-date-v3.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new DateIsInvalidError()
         deepStrictEqual(response.status, error.getCode())
@@ -316,12 +353,15 @@ describe('Api e2e test', () => {
                 import.meta.url
             )
         )
-        const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-value.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileData = new FormData()
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-value.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new ValueIsInvalidError()
         deepStrictEqual(response.status, error.getCode())
@@ -337,11 +377,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-value-v1.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-value-v1.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new ValueIsInvalidError()
         deepStrictEqual(response.status, error.getCode())
@@ -357,11 +400,14 @@ describe('Api e2e test', () => {
             )
         )
         const fileData = new FormData();
-        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-value-v2.txt'));
-        fileData.append('txtFile', fileBuffer)
+        const fileBuffer = readFileSync(join(currentDir, '/../assets/sales-invalid-value-v2.txt'))
+        const fileName = 'transactions.txt'
+        const fileType = 'text/plain'
+        const file = new File([fileBuffer], fileName, { type: fileType })
+        fileData.set('txtFile', file)
         const response = await fetch(`${BASE_URL}/transaction/txt-import`, {
             method: 'POST',
-            body: fileBuffer
+            body: fileData
         })
         const error = new ValueIsInvalidError()
         deepStrictEqual(response.status, error.getCode())

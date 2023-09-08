@@ -1,4 +1,3 @@
-import { once } from 'node:events'
 import lang from '../Internationalization/lang.js'
 import maper from '../Internationalization/maper.js'
 import TypeIsEmptyError from '../errors/TypeIsEmptyError.js'
@@ -9,6 +8,8 @@ import SellerIsEmptyError from '../errors/SellerIsEmptyError.js'
 import TypeIsInvalidError from '../errors/TypeIsInvalidError.js'
 import DateIsInvalidError from '../errors/DateIsInvalidError.js'
 import ValueIsInvalidError from '../errors/ValueIsInvalidError.js'
+import formidable, {errors as formidableErrors} from 'formidable'
+import { readFileSync, unlinkSync } from 'node:fs'
 
 class ImportTransactionsByTxtFileService
 {
@@ -19,15 +20,29 @@ class ImportTransactionsByTxtFileService
     }
 
     async run(request)
-    {
-        const buffer = await once(request, "data")
-        const bufferString = buffer.toString()
-        const linesArray = bufferString.split('\n')
+    {  
+        const form = formidable({})
+        let fields
+        let files
+        try {
+            [fields, files] = await form.parse(request)
+        } catch (err) {
+            if (err.code === formidableErrors.maxFieldsExceeded) {
+            }
+            console.error(err)
+            return
+        }
 
+        const buffer = readFileSync(files.txtFile[0].filepath)
+        unlinkSync(files.txtFile[0].filepath)
+        const linesArray = buffer.toString().split('\n')
         const transactions = []
-
         const types = await this.typeRepository.all()
         const typesIds = types.map(t => t.id)
+        let typesIndexed = []
+        types.forEach(type => {
+            typesIndexed[type.id] = type
+        })
 
         for (let i = 0; i < linesArray.length; i++) {
             const line = linesArray[i]
@@ -50,11 +65,12 @@ class ImportTransactionsByTxtFileService
                 if (!this.validDateString(date)) throw new DateIsInvalidError({ prefixMessage: lineErro })
                 if (!this.validValueString(value)) throw new ValueIsInvalidError({ prefixMessage: lineErro })
 
+                const cType = typesIndexed[type]
                 const transaction = {
                     typeId: type,
                     date: date,
                     product: product,
-                    value: value,
+                    value: cType.operator == '+' ? value : - value,
                     seller: seller
                 }
 
