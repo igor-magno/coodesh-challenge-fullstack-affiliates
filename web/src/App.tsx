@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Suspense, useState, useTransition } from "react";
+import TransactionsPage from "./TransactionsPage";
+import TransactionsImportByTxtPage from "./TransactionsImportByTxtPage";
+import Layout from "./Layout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<BigSpinner />}>
+      <Router />
+    </Suspense>
   );
+}
+
+function Router() {
+  const [page, setPage] = useState("/");
+  const [isPending, startTransition] = useTransition();
+
+  function navigate(url: string) {
+    startTransition(() => {
+      setPage(url);
+    });
+  }
+
+  let content;
+  if (page === "/" || page === "/transactions") {
+    content = <TransactionsPage navigate={navigate} />;
+  } else if (page === "/transactions/txt-import") {
+    content = <TransactionsImportByTxtPage navigate={navigate} />;
+  }
+  return <Layout isPending={isPending}>{content}</Layout>;
+}
+
+function BigSpinner() {
+  return <h2>🌀 Loading...</h2>;
 }
 
 export default App;
