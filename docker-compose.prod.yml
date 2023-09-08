@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  api:
+    container_name: api
+    build:
+      context: ./api
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3001:3000"
+    env_file:
+      - ./api/.env
+
+  web:
+    container_name: web
+    build:
+      context: ./web
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3000:3000"
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: affiliates_api_password
+      MYSQL_DATABASE: affiliates
+    ports:
+      - 3306:3306
