@@ -55,19 +55,19 @@ const TransactionsPage = ({ navigate }: { navigate: Function }) => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Product
+                Produto
               </th>
               <th scope="col" className="px-6 py-3">
-                Date
+                Data
               </th>
               <th scope="col" className="px-6 py-3">
                 Tipo
               </th>
               <th scope="col" className="px-6 py-3">
-                Value
+                Valor
               </th>
               <th scope="col" className="px-6 py-3">
-                Seller
+                Criador/Afiliado
               </th>
             </tr>
           </thead>
@@ -85,14 +85,14 @@ const TransactionsPage = ({ navigate }: { navigate: Function }) => {
                 </th>
                 <td className="px-6 py-4">
                   {new Date(transaction.date).toLocaleString("pt-BR", {
-                    weekday: "long", // Nome completo do dia da semana
-                    year: "numeric", // Ano no formato de 4 dígitos
-                    month: "long", // Nome completo do mês
-                    day: "numeric", // Dia do mês
-                    hour: "numeric", // Hora no formato 12 horas
-                    minute: "numeric", // Minuto
-                    second: "numeric", // Segundo
-                    hour12: true, // Use o formato de 12 horas (true) ou 24 horas (false)
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                    second: "numeric",
+                    hour12: true,
                   })}
                 </td>
                 <td className="px-6 py-4">

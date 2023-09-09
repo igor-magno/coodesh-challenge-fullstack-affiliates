@@ -15,9 +15,7 @@ const Layout = ({
         }}
         className="flex justify-center"
       >
-        <h2 className="text-4xl font-extrabold dark:text-white">
-          Transactions
-        </h2>
+        <h2 className="text-4xl font-extrabold dark:text-white">Transações</h2>
       </section>
       <main>{children}</main>
     </div>
