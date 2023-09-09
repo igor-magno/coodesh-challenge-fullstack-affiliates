@@ -7,7 +7,7 @@ class DateIsEmptyError extends Error {
         prefixMessage = '',
         suffixMessage = ''
     } = {}) {
-        const baseMessage = lang({ language, maperKey: maper['DateIsEmptyError.baseMessage'] })
+        const baseMessage = lang({ lang: language, maperKey: maper['DateIsEmptyError.baseMessage'] })
         const message = `${prefixMessage}${baseMessage}${suffixMessage}`
         super(message);
         this.name = 'DateIsEmptyError';

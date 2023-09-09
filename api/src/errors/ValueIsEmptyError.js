@@ -7,7 +7,7 @@ class ValueIsEmptyError extends Error {
         prefixMessage = '',
         suffixMessage = ''
     } = {}) {
-        const baseMessage = lang({ language, maperKey: maper['ValueIsEmptyError.baseMessage'] })
+        const baseMessage = lang({ lang: language, maperKey: maper['ValueIsEmptyError.baseMessage'] })
         const message = `${prefixMessage}${baseMessage}${suffixMessage}`
         super(message);
         this.name = 'ValueIsEmptyError';

@@ -1,6 +1,8 @@
 const langs = {
     en: { // english
         'generic.errorInLine': 'Error in line',
+        'transaction.import.txt.success': 'The file was imported successfully and all transactions are now available in the main listing',
+        'transaction.import.txt.error.zero.transactions': 'No transactions were found in the file',
         'TypeIsEmptyError.baseMessage': 'The type cannot be empty or blank',
         'DateIsEmptyError.baseMessage': 'Data cannot be empty or blank',
         'ProductIsEmptyError.baseMessage': 'The product cannot be empty or blank',
@@ -12,6 +14,8 @@ const langs = {
     },
     ptBr: { // portuguese
         'generic.errorInLine': 'Erro na linha',
+        'transaction.import.txt.success': 'O arquivo foi importado com sucesso, E todas as transações já estão disponíveis na listagem principal',
+        'transaction.import.txt.error.zero.transactions': 'Nenhuma transação foi encontrada no arquivo',
         'TypeIsEmptyError.baseMessage': 'O tipo não pode estar vazio ou em branco',
         'DateIsEmptyError.baseMessage': 'A data não pode estar vazia ou em branco',
         'ProductIsEmptyError.baseMessage': 'O produto não pode estar vazio ou em branco',

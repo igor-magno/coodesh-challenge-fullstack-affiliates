@@ -11,6 +11,9 @@ const ApiClient = async ({
 }) => {
   try {
     const response = await fetch(`http://localhost:3001/${route}`, {
+      headers: {
+        "x-lang": "pt-Br"
+      },
       ...init,
     });
     if (!statusCodeSuccess.includes(response.status)) {

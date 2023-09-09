@@ -7,7 +7,7 @@ class ProductIsEmptyError extends Error {
         prefixMessage = '',
         suffixMessage = ''
     } = {}) {
-        const baseMessage = lang({ language, maperKey: maper['ProductIsEmptyError.baseMessage'] })
+        const baseMessage = lang({ lang: language, maperKey: maper['ProductIsEmptyError.baseMessage'] })
         const message = `${prefixMessage}${baseMessage}${suffixMessage}`
         super(message);
         this.name = 'ProductIsEmptyError';

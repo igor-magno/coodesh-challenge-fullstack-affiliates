@@ -7,7 +7,7 @@ class TypeIsEmptyError extends Error {
         prefixMessage = '',
         suffixMessage = ''
     } = {}) {
-        const baseMessage = lang({ language, maperKey: maper['TypeIsEmptyError.baseMessage'] })
+        const baseMessage = lang({ lang: language, maperKey: maper['TypeIsEmptyError.baseMessage'] })
         const message = `${prefixMessage}${baseMessage}${suffixMessage}`
         super(message);
         this.name = 'TypeIsEmpty';
