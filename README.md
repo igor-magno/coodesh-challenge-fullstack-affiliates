@@ -77,8 +77,8 @@ npm run prod:db:seeder
 
 - Ambiente de Desenvolvimento:
 ```
-npm run prod:db:migrate
-npm run prod:db:seeder
+npm run dev:db:migrate
+npm run dev:db:seeder
 ```
 
 Realizados todos os passos acima, a aplicação deve estar disponível na porta 3000 para o cliente Web (front end) e na porta 3001 para a Api.
