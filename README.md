@@ -52,9 +52,9 @@ Acesse a pasta do projeto.
 cd coodesh-challenge-fullstack-affiliates
 ```
 
-Crie uma cópia do arquivo .env.example com o nome de .env e altere o valor das variáveis se necessário.
+Crie uma cópia do arquivo api/.env.example com o nome de api/.env
 ```
-cp .env.example .env
+cp api/.env.example api/.env
 ```
 
 Execute o seguinte comando para executar a plicação em modo de desenvolvimento.
