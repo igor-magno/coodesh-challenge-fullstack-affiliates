@@ -32,7 +32,15 @@ const TransactionsPage = ({ navigate }: { navigate: Function }) => {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between p-4">
+      <div className="md:flex md:flex-row-reverse justify-between p-4">
+        <div className="h-full flex justify-center items-center dark:text-white pb-4">
+          Saldo:{" "}
+          {amount < 0 ? (
+            <div className="text-red-500 pl-4">{amount}</div>
+          ) : (
+            <div className="text-green-500 pl-4">{amount}</div>
+          )}
+        </div>
         <div>
           <button
             onClick={() => navigate("/transactions/txt-import")}
@@ -40,14 +48,6 @@ const TransactionsPage = ({ navigate }: { navigate: Function }) => {
           >
             Importa arquivo (.TXT)
           </button>
-        </div>
-        <div className="h-full flex justify-center items-center dark:text-white">
-          Saldo:{" "}
-          {amount < 0 ? (
-            <div className="text-red-500 pl-4">{amount}</div>
-          ) : (
-            <div className="text-green-500 pl-4">{amount}</div>
-          )}
         </div>
       </div>
       <div className="relative overflow-x-auto">
