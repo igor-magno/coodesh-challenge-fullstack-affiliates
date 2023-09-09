@@ -1,40 +1,28 @@
 import { useEffect, useState } from "react";
+import ApiClient from "./ApiClient";
 
 const TransactionsPage = ({ navigate }: { navigate: Function }) => {
   const [transactions, setTransactions] = useState<Array<any>>([]);
   const [amount, setAmount] = useState<number>(0);
 
   const getTransactions = async () => {
-    const response = await fetch("http://localhost:3001/transaction", {
-      method: "GET",
+    const t = await ApiClient({
+      route: "transaction",
+      init: {
+        method: "GET",
+      },
     });
-
-    if (response.status != 200) {
-      const errorMesage = await response.text();
-      alert(errorMesage);
-      return;
-    }
-
-    const t = await response.json();
-    setTransactions(t);
+    if (t != 0) setTransactions(t);
   };
 
   const getSumValue = async () => {
-    const response = await fetch(
-      "http://localhost:3001/transaction/sum-value",
-      {
+    const a = await ApiClient({
+      route: "transaction/sum-value",
+      init: {
         method: "GET",
-      }
-    );
-
-    if (response.status != 200) {
-      const errorMesage = await response.text();
-      alert(errorMesage);
-      return;
-    }
-
-    const a = await response.json();
-    setAmount(Number(a.sumValue));
+      },
+    });
+    if (a != 0) setAmount(Number(a.sumValue));
   };
 
   useEffect(() => {

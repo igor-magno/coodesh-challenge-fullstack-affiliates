@@ -1,5 +1,7 @@
+import ApiClient from "./ApiClient";
+
 const TransactionsImportByTxtPage = ({ navigate }: { navigate: Function }) => {
-  const importTxtFile = () => {
+  const importTxtFile = async () => {
     const { files: fileElements } = document.getElementById(
       "input-txt-file"
     ) as HTMLInputElement;
@@ -9,19 +11,15 @@ const TransactionsImportByTxtPage = ({ navigate }: { navigate: Function }) => {
     const formData = new FormData();
     formData.append("txtFile", file);
 
-    fetch("http://localhost:3001/transaction/txt-import", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        return response.text();
-      })
-      .then((respose) => {
-        alert(respose);
-      })
-      .catch((error) => {
-        alert("Ops ocorreu um erro!");
-      });
+    const result = await ApiClient({
+      route: "transaction/txt-import",
+      init: {
+        method: "POST",
+        body: formData,
+      },
+      bodyFormat: "text",
+    });
+    if (result != 0) alert(result);
   };
 
   return (
