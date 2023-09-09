@@ -2,6 +2,8 @@
 
 Este projeto oferece a funcionalidade de importar vendas e transações através de um arquivo no formato .txt. Além disso, ele também apresenta uma lista completa de todas as vendas e transações registradas, permitindo visualizar o saldo total em tempo real.
 
+>  [Apresentação](https://www.loom.com/embed/498cefcae23f44f193e59840c526ac25)
+
 ### Segue a estrutura que o arquivo .txt deve obedecer
 
 | Campo    | Início | Fim | Tamanho | Descrição                      |
