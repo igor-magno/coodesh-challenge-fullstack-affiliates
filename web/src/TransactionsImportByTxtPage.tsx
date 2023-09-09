@@ -55,8 +55,7 @@ const TransactionsImportByTxtPage = ({ navigate }: { navigate: Function }) => {
                 />
               </svg>
               <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                <span className="font-semibold">Clique para fazer upload</span>{" "}
-                ou arraste e solte
+                <span className="font-semibold">Clique para fazer upload</span>
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">TXT</p>
             </div>
