@@ -34,7 +34,7 @@ const TransactionsPage = ({ navigate }: { navigate: Function }) => {
     <div className="p-4">
       <div className="md:flex md:flex-row-reverse justify-between p-4">
         <div className="h-full flex justify-center items-center dark:text-white pb-4">
-          Saldo:{" "}
+          Saldo R$:{" "}
           {amount < 0 ? (
             <div className="text-red-500 pl-4">{amount}</div>
           ) : (
