@@ -84,7 +84,7 @@ npm run prod:db:seeder
 Realizados todos os passos acima, a aplicação deve estar disponível na porta 3000 para o cliente Web (front end) e na porta 3001 para a Api.
 
 ## Testes
-Para rodar os teste do projeto é necessário acessar o bash do contêiner e executar os seguintes comandos.
+Para rodar os teste do projeto é necessário acessar o bash do contêiner api e executar os seguintes comandos.
 - Obs.: Os testes só rodam em ambiente de desenvolvimento
 
 garanta que as tabelas existem no Banco de Dados:
